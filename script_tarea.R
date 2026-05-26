@@ -30,3 +30,41 @@ dados <- data.frame(x = x,
 
 #5 exportar os dados simulados para a pasta L0 para servir como dados coletados em campo
 write.csv(dados, file = paste0(dir, 'Data/L0/dados_original-', run_date, '.csv'))
+
+dados <- read.csv
+rm(list = ls())
+
+#1. Adiciono todos os pacotes necessarios.
+library(data.table)
+library(car)
+library(lattice)
+library(latticeExtra)
+library(knitr)
+library(RColorBrewer)
+library(ggplot2)
+
+#2. Escolho o diretorio (pasta) que vou trabalhar.
+
+#3. Leio os dados que vou usar no codigo.
+dados <- read.csv(paste0(dir, 'E:\0.5. Doutorado abençoado\6° semestre 2026\Github\Trabalho_Final_Workflow\1Dados\L0/para_mi_tarea.csv'))
+
+
+
+db[, `:=` (Distância.de.Fuga.Pessoa.Conhecida =
+             as.numeric(Distância.de.Fuga.Pessoa.Conhecida),
+           Distância.de.Fuga.Pessoa.Neutra =
+             as.numeric(Distância.de.Fuga.Pessoa.Neutra))]
+
+cols <- c("Data", "Tratamento", "Número.da.Vaca", "Distância.de.Fuga.Pessoa.Conhecida")
+db[ Número.da.Vaca == 17, (.N), cols]
+db[ Número.da.Vaca == 9, (.N), cols]
+db[ Distância.de.Fuga.Pessoa.Conhecida == 0 , (.N), (Número.da.Vaca)]
+db[ Distância.de.Fuga.Pessoa.Neutra == 0 , (.N), (Número.da.Vaca)]
+
+hist(db$Dist.de.Fuga.Pessoa.Neutra)
+
+plot(fm15)
+summary(fm14 <- blmer(Distância.de.Fuga.Pessoa.Conhecida ~ Tempo +
+                        (1 | Grupo.de.Vacas/Número.da.Vaca),
+                      data = db))
+
