@@ -54,5 +54,5 @@ plot(fm15)
 summary(fm14 <- blmer(Distância.de.Fuga.Pessoa.Conhecida ~ Tempo +
                         (1 | Grupo.de.Vacas/Número.da.Vaca),
                       data = db))
-## VOU ADICIONAR ISTO SÓ PARA QUE FIQUEM VARIAS VERSOES NO DOI
+## VOU ADICIONAR ISTO SÓ PARA QUE FIQUEM VARIAS VERSOES NO DOi
 
