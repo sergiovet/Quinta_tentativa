@@ -1,8 +1,3 @@
-################
-### Código para simular dados ###
-#Definir o n amostral e simular dados para uso posterior
-################
-
 
 # Definir diretorio ------------------------------------------------------------
 
@@ -36,12 +31,7 @@ rm(list = ls())
 
 #1. Adiciono todos os pacotes necessarios.
 library(data.table)
-library(car)
-library(lattice)
-library(latticeExtra)
-library(knitr)
-library(RColorBrewer)
-library(ggplot2)
+
 
 #2. Escolho o diretorio (pasta) que vou trabalhar.
 
@@ -56,10 +46,7 @@ db[, `:=` (Distância.de.Fuga.Pessoa.Conhecida =
              as.numeric(Distância.de.Fuga.Pessoa.Neutra))]
 
 cols <- c("Data", "Tratamento", "Número.da.Vaca", "Distância.de.Fuga.Pessoa.Conhecida")
-db[ Número.da.Vaca == 17, (.N), cols]
-db[ Número.da.Vaca == 9, (.N), cols]
-db[ Distância.de.Fuga.Pessoa.Conhecida == 0 , (.N), (Número.da.Vaca)]
-db[ Distância.de.Fuga.Pessoa.Neutra == 0 , (.N), (Número.da.Vaca)]
+d
 
 hist(db$Dist.de.Fuga.Pessoa.Neutra)
 
